@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.csapi.org/wsdl/parlayx/sms/receive/v2_0/service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.csapi.org/wsdl/parlayx/sms/receive/v2_0/service" xmlns:intf="http://www.csapi.org/wsdl/parlayx/sms/receive/v2_0/service" xmlns:tns1="http://www.csapi.org/schema/parlayx/sms/receive/v2_0/local" xmlns:tns2="http://www.csapi.org/schema/parlayx/sms/v2_0" xmlns:tns3="http://www.csapi.org/schema/parlayx/common/v2_0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://www.csapi.org/schema/parlayx/sms/receive/v2_0/local" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.csapi.org/schema/parlayx/common/v2_0"/>
+   <import namespace="http://www.csapi.org/schema/parlayx/sms/v2_0"/>
+   <element name="getReceivedSms">
+    <complexType>
+     <sequence>
+      <element name="registrationIdentifier" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getReceivedSmsResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="result" type="tns2:SmsMessage"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema targetNamespace="http://www.csapi.org/schema/parlayx/sms/v2_0" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.csapi.org/schema/parlayx/common/v2_0"/>
+   <complexType name="SmsMessage">
+    <sequence>
+     <element name="message" type="xsd:string"/>
+     <element name="senderAddress" type="xsd:anyURI"/>
+     <element name="smsServiceActivationNumber" type="xsd:anyURI"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="http://www.csapi.org/schema/parlayx/common/v2_0" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.csapi.org/schema/parlayx/sms/v2_0"/>
+   <complexType name="PolicyException">
+    <sequence>
+     <element name="messageId" type="xsd:string"/>
+     <element name="text" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="variables" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="PolicyException" type="tns3:PolicyException"/>
+   <complexType name="ServiceException">
+    <sequence>
+     <element name="messageId" type="xsd:string"/>
+     <element name="text" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="variables" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="ServiceException" type="tns3:ServiceException"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getReceivedSmsRequest">
+
+      <wsdl:part element="tns1:getReceivedSms" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="PolicyException">
+
+      <wsdl:part element="tns3:PolicyException" name="PolicyException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ServiceException">
+
+      <wsdl:part element="tns3:ServiceException" name="ServiceException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getReceivedSmsResponse">
+
+      <wsdl:part element="tns1:getReceivedSmsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ReceiveSms">
+
+      <wsdl:operation name="getReceivedSms">
+
+         <wsdl:input message="impl:getReceivedSmsRequest" name="getReceivedSmsRequest"/>
+
+         <wsdl:output message="impl:getReceivedSmsResponse" name="getReceivedSmsResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ReceiveSmsSoapBinding" type="impl:ReceiveSms">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getReceivedSms">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getReceivedSmsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getReceivedSmsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ReceiveSmsService">
+
+      <wsdl:port binding="impl:ReceiveSmsSoapBinding" name="ReceiveSms">
+
+         <wsdlsoap:address location="https://10.2.13.16:7004/smsgw-soap/services/ReceiveSms"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

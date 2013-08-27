@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.csapi.org/wsdl/parlayx/sms/send/v2_0/service" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://www.csapi.org/wsdl/parlayx/sms/send/v2_0/service" xmlns:intf="http://www.csapi.org/wsdl/parlayx/sms/send/v2_0/service" xmlns:tns1="http://www.csapi.org/schema/parlayx/sms/send/v2_0/local" xmlns:tns2="http://www.csapi.org/schema/parlayx/common/v2_0" xmlns:tns3="http://www.csapi.org/schema/parlayx/sms/v2_0" xmlns:tns4="http://sms.generated.server.soap.smsgw" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://www.csapi.org/schema/parlayx/sms/send/v2_0/local" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.csapi.org/schema/parlayx/common/v2_0"/>
+   <import namespace="http://www.csapi.org/schema/parlayx/sms/v2_0"/>
+   <import namespace="http://sms.generated.server.soap.smsgw"/>
+   <element name="sendSms">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="addresses" type="xsd:anyURI"/>
+      <element name="senderName" type="xsd:string"/>
+      <element name="charging" type="tns2:ChargingInformation"/>
+      <element name="message" type="xsd:string"/>
+      <element name="isFlash" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSmsResponse">
+    <complexType>
+     <sequence>
+      <element name="result" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendUnicodeSms">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="addresses" type="xsd:anyURI"/>
+      <element name="senderName" type="xsd:string"/>
+      <element name="charging" type="tns2:ChargingInformation"/>
+      <element name="message" type="xsd:string"/>
+      <element name="isFlash" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendUnicodeSmsResponse">
+    <complexType>
+     <sequence>
+      <element name="result" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSmsLogo">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="addresses" type="xsd:anyURI"/>
+      <element name="senderName" type="xsd:string"/>
+      <element name="charging" type="tns2:ChargingInformation"/>
+      <element name="image" type="xsd:base64Binary"/>
+      <element name="smsFormat" type="tns3:SmsFormat"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSmsLogoResponse">
+    <complexType>
+     <sequence>
+      <element name="result" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSmsRingtone">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="addresses" type="xsd:anyURI"/>
+      <element name="senderName" type="xsd:string"/>
+      <element name="charging" type="tns2:ChargingInformation"/>
+      <element name="ringtone" type="xsd:string"/>
+      <element name="smsFormat" type="tns3:SmsFormat"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSmsRingtoneResponse">
+    <complexType>
+     <sequence>
+      <element name="result" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSmsDeliveryStatus">
+    <complexType>
+     <sequence>
+      <element name="requestIdentifier" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getSmsDeliveryStatusResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="result" type="tns3:DeliveryInformation"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSmsWithReport">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="addresses" type="xsd:anyURI"/>
+      <element name="senderName" type="xsd:string"/>
+      <element name="charging" type="tns2:ChargingInformation"/>
+      <element name="message" type="xsd:string"/>
+      <element name="notificationType" type="xsd:string"/>
+      <element name="isFlash" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendSmsWithReportResponse">
+    <complexType>
+     <sequence>
+      <element name="result" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendUnicodeSmsWithReport">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="addresses" type="xsd:anyURI"/>
+      <element name="senderName" type="xsd:string"/>
+      <element name="charging" type="tns2:ChargingInformation"/>
+      <element name="message" type="xsd:string"/>
+      <element name="notificationType" type="xsd:string"/>
+      <element name="isFlash" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sendUnicodeSmsWithReportResponse">
+    <complexType>
+     <sequence>
+      <element name="result" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getReceivedReport">
+    <complexType>
+     <sequence>
+      <element name="registrationIdentifier" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getReceivedReportResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="result" type="tns4:ReportMessage"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema targetNamespace="http://www.csapi.org/schema/parlayx/common/v2_0" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.csapi.org/schema/parlayx/sms/v2_0"/>
+   <import namespace="http://sms.generated.server.soap.smsgw"/>
+   <complexType name="ChargingInformation">
+    <sequence>
+     <element name="description" type="xsd:string"/>
+     <element name="currency" type="xsd:string"/>
+     <element name="amount" type="xsd:decimal"/>
+     <element name="code" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PolicyException">
+    <sequence>
+     <element name="messageId" type="xsd:string"/>
+     <element name="text" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="variables" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="PolicyException" type="tns2:PolicyException"/>
+   <complexType name="ServiceException">
+    <sequence>
+     <element name="messageId" type="xsd:string"/>
+     <element name="text" type="xsd:string"/>
+     <element maxOccurs="unbounded" minOccurs="0" name="variables" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="ServiceException" type="tns2:ServiceException"/>
+  </schema>
+  <schema targetNamespace="http://www.csapi.org/schema/parlayx/sms/v2_0" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.csapi.org/schema/parlayx/common/v2_0"/>
+   <import namespace="http://sms.generated.server.soap.smsgw"/>
+   <simpleType name="SmsFormat">
+    <restriction base="xsd:string">
+     <enumeration value="Ems"/>
+     <enumeration value="SmartMessaging"/>
+    </restriction>
+   </simpleType>
+   <simpleType name="DeliveryStatus">
+    <restriction base="xsd:string">
+     <enumeration value="Delivered"/>
+     <enumeration value="DeliveryUncertain"/>
+     <enumeration value="DeliveryImpossible"/>
+     <enumeration value="MessageWaiting"/>
+    </restriction>
+   </simpleType>
+   <complexType name="DeliveryInformation">
+    <sequence>
+     <element name="address" type="xsd:anyURI"/>
+     <element name="deliveryStatus" type="tns3:DeliveryStatus"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://sms.generated.server.soap.smsgw" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://www.csapi.org/schema/parlayx/common/v2_0"/>
+   <import namespace="http://www.csapi.org/schema/parlayx/sms/v2_0"/>
+   <complexType name="ReportMessage">
+    <sequence>
+     <element name="message" type="xsd:string"/>
+     <element name="senderAddress" type="xsd:anyURI"/>
+     <element name="receiverAddress" type="xsd:anyURI"/>
+     <element name="originMessageId" type="xsd:anyURI"/>
+     <element name="deliveryStatus" type="xsd:anyURI"/>
+     <element name="reasonCode" type="xsd:anyURI"/>
+     <element name="originTimestamp" type="xsd:anyURI"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sendSmsWithReportRequest">
+
+      <wsdl:part element="tns1:sendSmsWithReport" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendUnicodeSmsRequest">
+
+      <wsdl:part element="tns1:sendUnicodeSms" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSmsRingtoneResponse">
+
+      <wsdl:part element="tns1:sendSmsRingtoneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendUnicodeSmsResponse">
+
+      <wsdl:part element="tns1:sendUnicodeSmsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSmsWithReportResponse">
+
+      <wsdl:part element="tns1:sendSmsWithReportResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSmsLogoRequest">
+
+      <wsdl:part element="tns1:sendSmsLogo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="PolicyException">
+
+      <wsdl:part element="tns2:PolicyException" name="PolicyException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSmsDeliveryStatusResponse">
+
+      <wsdl:part element="tns1:getSmsDeliveryStatusResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSmsLogoResponse">
+
+      <wsdl:part element="tns1:sendSmsLogoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSmsRequest">
+
+      <wsdl:part element="tns1:sendSms" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSmsResponse">
+
+      <wsdl:part element="tns1:sendSmsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getReceivedReportRequest">
+
+      <wsdl:part element="tns1:getReceivedReport" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getReceivedReportResponse">
+
+      <wsdl:part element="tns1:getReceivedReportResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ServiceException">
+
+      <wsdl:part element="tns2:ServiceException" name="ServiceException"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getSmsDeliveryStatusRequest">
+
+      <wsdl:part element="tns1:getSmsDeliveryStatus" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendUnicodeSmsWithReportRequest">
+
+      <wsdl:part element="tns1:sendUnicodeSmsWithReport" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendSmsRingtoneRequest">
+
+      <wsdl:part element="tns1:sendSmsRingtone" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendUnicodeSmsWithReportResponse">
+
+      <wsdl:part element="tns1:sendUnicodeSmsWithReportResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SendSms">
+
+      <wsdl:operation name="sendSms">
+
+         <wsdl:input message="impl:sendSmsRequest" name="sendSmsRequest"/>
+
+         <wsdl:output message="impl:sendSmsResponse" name="sendSmsResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendUnicodeSms">
+
+         <wsdl:input message="impl:sendUnicodeSmsRequest" name="sendUnicodeSmsRequest"/>
+
+         <wsdl:output message="impl:sendUnicodeSmsResponse" name="sendUnicodeSmsResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSmsLogo">
+
+         <wsdl:input message="impl:sendSmsLogoRequest" name="sendSmsLogoRequest"/>
+
+         <wsdl:output message="impl:sendSmsLogoResponse" name="sendSmsLogoResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSmsRingtone">
+
+         <wsdl:input message="impl:sendSmsRingtoneRequest" name="sendSmsRingtoneRequest"/>
+
+         <wsdl:output message="impl:sendSmsRingtoneResponse" name="sendSmsRingtoneResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSmsDeliveryStatus">
+
+         <wsdl:input message="impl:getSmsDeliveryStatusRequest" name="getSmsDeliveryStatusRequest"/>
+
+         <wsdl:output message="impl:getSmsDeliveryStatusResponse" name="getSmsDeliveryStatusResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSmsWithReport">
+
+         <wsdl:input message="impl:sendSmsWithReportRequest" name="sendSmsWithReportRequest"/>
+
+         <wsdl:output message="impl:sendSmsWithReportResponse" name="sendSmsWithReportResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendUnicodeSmsWithReport">
+
+         <wsdl:input message="impl:sendUnicodeSmsWithReportRequest" name="sendUnicodeSmsWithReportRequest"/>
+
+         <wsdl:output message="impl:sendUnicodeSmsWithReportResponse" name="sendUnicodeSmsWithReportResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getReceivedReport">
+
+         <wsdl:input message="impl:getReceivedReportRequest" name="getReceivedReportRequest"/>
+
+         <wsdl:output message="impl:getReceivedReportResponse" name="getReceivedReportResponse"/>
+
+         <wsdl:fault message="impl:PolicyException" name="PolicyException"/>
+
+         <wsdl:fault message="impl:ServiceException" name="ServiceException"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SendSmsSoapBinding" type="impl:SendSms">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sendSms">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendSmsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendSmsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendUnicodeSms">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendUnicodeSmsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendUnicodeSmsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSmsLogo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendSmsLogoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendSmsLogoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSmsRingtone">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendSmsRingtoneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendSmsRingtoneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getSmsDeliveryStatus">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getSmsDeliveryStatusRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getSmsDeliveryStatusResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendSmsWithReport">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendSmsWithReportRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendSmsWithReportResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendUnicodeSmsWithReport">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendUnicodeSmsWithReportRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendUnicodeSmsWithReportResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getReceivedReport">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getReceivedReportRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getReceivedReportResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="PolicyException">
+
+            <wsdlsoap:fault name="PolicyException" use="literal"/>
+
+         </wsdl:fault>
+
+         <wsdl:fault name="ServiceException">
+
+            <wsdlsoap:fault name="ServiceException" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SendSmsService">
+
+      <wsdl:port binding="impl:SendSmsSoapBinding" name="SendSms">
+
+         <wsdlsoap:address location="https://10.2.13.16:7004/smsgw-soap/services/SendSms"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

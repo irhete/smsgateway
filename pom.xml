@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>SmsGateway</groupId>
+	<artifactId>SmsGateway</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>SmsGateway Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<spring.version>3.2.3.RELEASE</spring.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- Spring MVC framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<!-- for compile only, your container should have this -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>1.5</version>
+
+				<configuration>
+					<quiet>true</quiet>
+					<verbose>false</verbose>
+					<clearOutputDir>false</clearOutputDir>
+					<readOnly>true</readOnly>
+					<arguments>-mark-generated</arguments>
+				</configuration>
+
+				<executions>
+					<execution>
+						<id>send-sms-xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<packageName>com.nortal.telecom.smsgateway.model.sendsms</packageName>
+							<wsdl>true</wsdl>
+							<xmlschema>false</xmlschema>
+							<schemaDirectory>src/main/resources</schemaDirectory>
+							<schemaFiles>SendSms.xml</schemaFiles>
+							<staleFile>${build.directory}/generated-sources/.jaxb-staleFlag-send-sms</staleFile>
+							<outputDirectory>src/main/java</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>receive-sms-xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<packageName>com.nortal.telecom.smsgateway.model.receivesms</packageName>
+							<wsdl>true</wsdl>
+							<xmlschema>false</xmlschema>
+							<schemaDirectory>src/main/resources</schemaDirectory>
+							<schemaFiles>ReceiveSms.xml</schemaFiles>
+							<staleFile>${project.build.directory}/generated-sources/.jaxb-staleFlag-receive-sms</staleFile>
+							<outputDirectory>src/main/java</outputDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>adminservice-xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<packageName>com.nortal.telecom.smsgateway.model.adminservice</packageName>
+							<wsdl>true</wsdl>
+							<xmlschema>false</xmlschema>
+							<schemaDirectory>src/main/resources</schemaDirectory>
+							<schemaFiles>AdminService.xml</schemaFiles>
+							<staleFile>${project.build.directory}/generated-sources/.jaxb-staleFlag-adminservice</staleFile>
+							<outputDirectory>src/main/java</outputDirectory>
+						</configuration>
+					</execution>
+
+				</executions>
+
+
+			</plugin>
+
+
+		</plugins>
+		<finalName>SmsGateway</finalName>
+	</build>
+</project>
