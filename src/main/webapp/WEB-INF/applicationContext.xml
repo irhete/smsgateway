@@ -41,7 +41,18 @@
 		<property name="marshaller" ref="marshaller" />
 		<property name="unmarshaller" ref="marshaller" />
 		<property name="faultMessageResolver" ref="smsSoapFaultMessageResolver"/>
+		<property name="interceptors">
+        <list>
+            <ref bean="wsSecurityInterceptor" />
+        </list>
+    </property>
 	</bean>
+	
+	<bean id="bean="wsSecurityInterceptor" " class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+    <property name="securementActions" value="UsernameToken"/>
+    <property name="securementUsername" value="Ernie"/>
+    <property name="securementPassword" value="Bert"/>
+</bean>
 
 	<bean id="smsSoapFaultMessageResolver"
 		class="com.nortal.telecom.smsgateway.error.SmsSoapFaultMessageResolver" />
