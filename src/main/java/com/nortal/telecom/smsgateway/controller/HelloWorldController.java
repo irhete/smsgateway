@@ -56,7 +56,6 @@ public class HelloWorldController extends AbstractController {
 
 			Thread.sleep(60000);
 			scheduler.shutdown();
-			System.out.println("first");
 
 		} catch (SchedulerException se) {
 			se.printStackTrace();
