@@ -10,7 +10,7 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.impl.StdSchedulerFactory;
 
-import com.nortal.telecom.smsgateway.model.job.HelloJob;
+import com.nortal.telecom.smsgateway.job.HelloJob;
 
 public class ExampleScheduler {
 

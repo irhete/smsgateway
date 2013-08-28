@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
-import com.nortal.telecom.smsgateway.service.receivesms.ReceiveSmsServiceImpl;
+import com.nortal.telecom.smsgateway.service.ReceiveSmsServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ReceiveSmsServiceTest {
