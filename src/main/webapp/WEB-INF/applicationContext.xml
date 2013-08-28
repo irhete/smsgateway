@@ -48,7 +48,7 @@
     </property>
 	</bean>
 	
-	<bean id="bean="wsSecurityInterceptor" " class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
+	<bean id="wsSecurityInterceptor" class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
     <property name="securementActions" value="UsernameToken"/>
     <property name="securementUsername" value="Ernie"/>
     <property name="securementPassword" value="Bert"/>
