@@ -105,7 +105,6 @@
 					<quiet>true</quiet>
 					<verbose>false</verbose>
 					<clearOutputDir>false</clearOutputDir>
-					<readOnly>true</readOnly>
 					<arguments>-mark-generated</arguments>
 				</configuration>
 
@@ -121,7 +120,7 @@
 							<xmlschema>false</xmlschema>
 							<schemaDirectory>src/main/resources</schemaDirectory>
 							<schemaFiles>SendSms.xml</schemaFiles>
-							<staleFile>${build.directory}/generated-sources/.jaxb-staleFlag-send-sms</staleFile>
+							<staleFile>${project.build.directory}/generated-sources/.jaxb-staleFlag-send-sms</staleFile>
 							<outputDirectory>src/main/java</outputDirectory>
 						</configuration>
 					</execution>
