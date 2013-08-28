@@ -1,0 +1,13 @@
+package com.nortal.telecom.smsgateway.model.job;
+
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+
+public class HelloJob implements Job {
+
+	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+		System.out.println("Hello! HelloJob is executing.");
+	}
+
+}
