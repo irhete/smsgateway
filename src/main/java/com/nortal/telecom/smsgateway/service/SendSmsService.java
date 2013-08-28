@@ -12,6 +12,10 @@ import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReport;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReportResponse;
 
+/**
+ * Services for sending SMS messages
+ * 
+ */
 public interface SendSmsService {
 
 	public SendSmsResponse sendSms(String message, List<String> addresses);

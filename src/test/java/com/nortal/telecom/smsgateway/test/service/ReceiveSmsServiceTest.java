@@ -1,27 +1,25 @@
 package com.nortal.telecom.smsgateway.test.service;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.ws.client.core.WebServiceTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.nortal.telecom.smsgateway.service.ReceiveSmsServiceImpl;
+import com.nortal.telecom.smsgateway.model.receivesms.SmsMessage;
+import com.nortal.telecom.smsgateway.service.ReceiveSmsService;
 
-@RunWith(MockitoJUnitRunner.class)
 public class ReceiveSmsServiceTest {
 
-	@Mock
-	private WebServiceTemplate receiveWebServiceTemplate;
-
-	@InjectMocks
-	private ReceiveSmsServiceImpl service;
+	@Autowired
+	private ReceiveSmsService service;
 
 	@Ignore
 	@Test
 	public void getReceivedSmsTest() {
-
+		List<SmsMessage> messages = service.getReceivedSms();
+		assertEquals(1, messages.size());
 	}
 }
