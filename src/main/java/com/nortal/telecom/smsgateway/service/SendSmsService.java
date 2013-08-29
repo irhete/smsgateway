@@ -2,6 +2,7 @@ package com.nortal.telecom.smsgateway.service;
 
 import java.util.List;
 
+import com.nortal.telecom.smsgateway.model.sendsms.ChargingInformation;
 import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReport;
 import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReportResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.GetSmsDeliveryStatus;
@@ -18,7 +19,8 @@ import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReportRespo
  */
 public interface SendSmsService {
 
-	public SendSmsResponse sendSms(String message, List<String> addresses);
+	public SendSmsResponse sendSms(String message, List<String> addresses,
+			ChargingInformation chargingInfo);
 
 	public SendUnicodeSmsResponse sendUnicodeSms(SendUnicodeSms request);
 

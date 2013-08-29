@@ -7,30 +7,19 @@
 
 	<context:component-scan base-package="com.nortal.telecom.smsgateway" />
 
-	<bean id="messageFactory"
-		class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory">
-		<property name="payloadCaching" value="false" />
+	<bean id="sendSmsMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller" >
+	<property name="contextPath" value="com.nortal.telecom.smsgateway.model.sendsms"/>
 	</bean>
-
-	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-		<property name="contextPath">
-			<list>
-				<value>com.nortal.telecom.smsgateway.model.sendsms
-				</value>
-				<value>com.nortal.telecom.smsgateway.model.receivesms
-				</value>
-				<value>com.nortal.telecom.smsgateway.model.adminservice
-				</value>
-			</list>
-		</property>
+	
+	<bean id="receiveSmsMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller" >
+	<property name="contextPath" value="com.nortal.telecom.smsgateway.model.receivesms"/>
 	</bean>
 
 	<bean id="sendSmsWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
-		<constructor-arg ref="messageFactory" />
 		<property name="defaultUri"
-			value="https://10.2.13.16:7004/smsgw-soap/services/SendSms" />
-		<property name="marshaller" ref="marshaller" />
-		<property name="unmarshaller" ref="marshaller" />
+			value="https://web.emt.ee:7004/smsgw-soap/services/SendSms" />
+		<property name="marshaller" ref="sendSmsMarshaller" />
+		<property name="unmarshaller" ref="sendSmsMarshaller" />
 		<property name="interceptors">
 			<list>
 				<ref bean="wsSecurityInterceptor" />
@@ -39,11 +28,10 @@
 	</bean>
 
 	<bean id="receiveSmsWebServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
-		<constructor-arg ref="messageFactory" />
 		<property name="defaultUri"
-			value="https://10.2.13.16:7004/smsgw-soap/services/ReceiveSms" />
-		<property name="marshaller" ref="marshaller" />
-		<property name="unmarshaller" ref="marshaller" />
+			value="https://web.emt.ee:7004/smsgw-soap/services/ReceiveSms" />
+		<property name="marshaller" ref="receiveSmsMarshaller" />
+		<property name="unmarshaller" ref="receiveSmsMarshaller" />
 		<property name="interceptors">
 			<list>
 				<ref bean="wsSecurityInterceptor" />
@@ -54,8 +42,8 @@
 	<bean id="wsSecurityInterceptor"
 		class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
 		<property name="securementActions" value="UsernameToken" />
-		<property name="securementUsername" value="ITKtest" />
-		<property name="securementPassword" value="Webmedia" />
+		<property name="securementUsername" value="emt_temp" />
+		<property name="securementPassword" value="51hangchildrensignalfast853" />
 	</bean>
 
 	<bean id="smsSoapFaultMessageResolver"

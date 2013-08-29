@@ -2,7 +2,9 @@ package com.nortal.telecom.smsgateway.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
 import com.nortal.telecom.smsgateway.model.sendsms.ChargingInformation;
@@ -18,24 +20,26 @@ import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReport;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReportResponse;
 
+@Service
 public class SendSmsServiceImpl implements SendSmsService {
 
-	private static final String SENDER_NAME = "sender";
+	private static final String SENDER_NAME = "sender:9498";
 
 	private static final ObjectFactory SEND_SMS_FACTORY = new ObjectFactory();
 
-	@Autowired
+	@Resource(name = "sendSmsWebServiceTemplate")
 	private WebServiceTemplate sendSmsWebServiceTemplate;
 
 	public void setWebServiceTemplate(WebServiceTemplate webServiceTemplate) {
 		sendSmsWebServiceTemplate = webServiceTemplate;
 	}
 
-	public SendSmsResponse sendSms(String message, List<String> addresses) {
+	public SendSmsResponse sendSms(String message, List<String> addresses,
+			ChargingInformation chargingInfo) {
 		SendSms request = SEND_SMS_FACTORY.createSendSms();
 		request.setMessage(message);
-		request.setCharging(new ChargingInformation());
 		request.setSenderName(SENDER_NAME);
+		request.setCharging(chargingInfo);
 		// TODO add setAddresses method to SendSms
 
 		SendSmsResponse response = (SendSmsResponse) sendSmsWebServiceTemplate

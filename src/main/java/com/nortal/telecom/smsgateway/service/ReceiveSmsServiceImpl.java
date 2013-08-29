@@ -2,7 +2,8 @@ package com.nortal.telecom.smsgateway.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
@@ -18,17 +19,17 @@ public class ReceiveSmsServiceImpl implements ReceiveSmsService {
 
 	private static final ObjectFactory RECEIVE_SMS_FACTORY = new ObjectFactory();
 
-	@Autowired
-	private WebServiceTemplate receiveWebServiceTemplate;
+	@Resource(name = "receiveSmsWebServiceTemplate")
+	private WebServiceTemplate receiveSmsWebServiceTemplate;
 
 	public void setWebServiceTemplate(WebServiceTemplate webServiceTemplate) {
-		receiveWebServiceTemplate = webServiceTemplate;
+		receiveSmsWebServiceTemplate = webServiceTemplate;
 	}
 
 	public List<SmsMessage> getReceivedSms() {
 		GetReceivedSms request = RECEIVE_SMS_FACTORY.createGetReceivedSms();
 		request.setRegistrationIdentifier(REGISTRATION_ID);
-		GetReceivedSmsResponse response = (GetReceivedSmsResponse) receiveWebServiceTemplate
+		GetReceivedSmsResponse response = (GetReceivedSmsResponse) receiveSmsWebServiceTemplate
 				.marshalSendAndReceive(request);
 
 		return response.getResult();

@@ -4,22 +4,27 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
-import org.junit.Ignore;
+import javax.annotation.Resource;
+
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.nortal.telecom.smsgateway.model.receivesms.SmsMessage;
 import com.nortal.telecom.smsgateway.service.ReceiveSmsService;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:testApplicationContext.xml" })
 public class ReceiveSmsServiceTest {
 
-	@Autowired
+	@Resource
 	private ReceiveSmsService service;
 
-	@Ignore
+	// @Ignore
 	@Test
 	public void getReceivedSmsTest() {
 		List<SmsMessage> messages = service.getReceivedSms();
-		assertEquals(1, messages.size());
+		assertEquals(0, messages.size());
 	}
 }
