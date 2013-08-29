@@ -14,7 +14,11 @@ import com.nortal.telecom.smsgateway.model.sendsms.GetSmsDeliveryStatus;
 import com.nortal.telecom.smsgateway.model.sendsms.GetSmsDeliveryStatusResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.ObjectFactory;
 import com.nortal.telecom.smsgateway.model.sendsms.SendSms;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsLogo;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsLogoResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendSmsResponse;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsRingtone;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsRingtoneResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSms;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReport;
@@ -71,6 +75,16 @@ public class SendSmsServiceImpl implements SendSmsService {
 	}
 
 	public GetReceivedReportResponse getReceivedReport(GetReceivedReport request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SendSmsLogoResponse sendSmsLogo(SendSmsLogo request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SendSmsRingtoneResponse sendSmsRingtone(SendSmsRingtone request) {
 		// TODO Auto-generated method stub
 		return null;
 	}

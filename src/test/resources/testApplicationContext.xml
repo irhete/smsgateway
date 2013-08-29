@@ -42,7 +42,7 @@
 	<bean id="wsSecurityInterceptor"
 		class="org.springframework.ws.soap.security.wss4j.Wss4jSecurityInterceptor">
 		<property name="securementActions" value="UsernameToken" />
-		<property name="securementUsername" value="emt_temp" />
+		<property name="securementUsername" value="emt_temp@ehealth" />
 		<property name="securementPassword" value="51hangchildrensignalfast853" />
 	</bean>
 

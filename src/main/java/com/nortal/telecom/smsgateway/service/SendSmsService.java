@@ -7,7 +7,11 @@ import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReport;
 import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReportResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.GetSmsDeliveryStatus;
 import com.nortal.telecom.smsgateway.model.sendsms.GetSmsDeliveryStatusResponse;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsLogo;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsLogoResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendSmsResponse;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsRingtone;
+import com.nortal.telecom.smsgateway.model.sendsms.SendSmsRingtoneResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSms;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsResponse;
 import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReport;
@@ -34,5 +38,9 @@ public interface SendSmsService {
 			GetSmsDeliveryStatus request);
 
 	public GetReceivedReportResponse getReceivedReport(GetReceivedReport request);
+
+	public SendSmsLogoResponse sendSmsLogo(SendSmsLogo request);
+
+	public SendSmsRingtoneResponse sendSmsRingtone(SendSmsRingtone request);
 
 }
