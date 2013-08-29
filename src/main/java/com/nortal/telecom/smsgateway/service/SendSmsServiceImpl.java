@@ -8,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
+import org.springframework.ws.soap.client.SoapFaultClientException;
 
+import com.nortal.telecom.smsgateway.error.SoapFaultExceptionHandler;
 import com.nortal.telecom.smsgateway.model.sendsms.ChargingInformation;
 import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReport;
 import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReportResponse;
@@ -52,9 +54,14 @@ public class SendSmsServiceImpl implements SendSmsService {
 		for (String address : addresses) {
 			request.getAddresses().add(address);
 		}
-		SendSmsResponse response = (SendSmsResponse) sendSmsWebServiceTemplate
-				.marshalSendAndReceive(request);
-		return response;
+		try {
+			SendSmsResponse response = (SendSmsResponse) sendSmsWebServiceTemplate
+					.marshalSendAndReceive(request);
+			return response;
+		} catch (SoapFaultClientException e) {
+			throw SoapFaultExceptionHandler.handle(e);
+		}
+
 	}
 
 	public SendUnicodeSmsResponse sendUnicodeSms(SendUnicodeSms request) {

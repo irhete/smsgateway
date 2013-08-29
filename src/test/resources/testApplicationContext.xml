@@ -56,7 +56,4 @@
 		<property name="securementPassword" value="Webmedia" />
 	</bean>
 
-	<bean id="smsSoapFaultMessageResolver"
-		class="com.nortal.telecom.smsgateway.error.SmsSoapFaultMessageResolver" />
-
 </beans>
