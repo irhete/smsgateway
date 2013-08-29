@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 
-import com.nortal.telecom.smsgateway.error.SoapFaultExceptionHandler;
+import com.nortal.telecom.smsgateway.error.SoapResponseErrorMessageHandler;
 import com.nortal.telecom.smsgateway.model.sendsms.ChargingInformation;
 import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReport;
 import com.nortal.telecom.smsgateway.model.sendsms.GetReceivedReportResponse;
@@ -54,12 +54,21 @@ public class SendSmsServiceImpl implements SendSmsService {
 		for (String address : addresses) {
 			request.getAddresses().add(address);
 		}
+		return sendSmsAndHandleResponse(request);
+
+	}
+
+	private SendSmsResponse sendSmsAndHandleResponse(SendSms request)
+			throws RuntimeException {
 		try {
 			SendSmsResponse response = (SendSmsResponse) sendSmsWebServiceTemplate
 					.marshalSendAndReceive(request);
+			if (response.getResult().indexOf("SVC") != -1) {
+				throw SoapResponseErrorMessageHandler.handle(response.getResult());
+			}
 			return response;
 		} catch (SoapFaultClientException e) {
-			throw SoapFaultExceptionHandler.handle(e);
+			throw SoapResponseErrorMessageHandler.handle(e);
 		}
 
 	}
