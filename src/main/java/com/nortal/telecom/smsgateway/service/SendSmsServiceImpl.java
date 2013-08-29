@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.WebServiceTemplate;
 
@@ -27,6 +29,9 @@ import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReportRespo
 @Service
 public class SendSmsServiceImpl implements SendSmsService {
 
+	private final Logger log = LoggerFactory
+			.getLogger(SendSmsServiceImpl.class);
+
 	private static final String SENDER_NAME = "sender:9498";
 
 	private static final ObjectFactory SEND_SMS_FACTORY = new ObjectFactory();
@@ -44,8 +49,9 @@ public class SendSmsServiceImpl implements SendSmsService {
 		request.setMessage(message);
 		request.setSenderName(SENDER_NAME);
 		request.setCharging(chargingInfo);
-		// TODO add setAddresses method to SendSms
-
+		for (String address : addresses) {
+			request.getAddresses().add(address);
+		}
 		SendSmsResponse response = (SendSmsResponse) sendSmsWebServiceTemplate
 				.marshalSendAndReceive(request);
 		return response;

@@ -21,7 +21,6 @@ public class ReceiveSmsServiceTest {
 	@Resource
 	private ReceiveSmsService service;
 
-	// @Ignore
 	@Test
 	public void getReceivedSmsTest() {
 		List<SmsMessage> messages = service.getReceivedSms();

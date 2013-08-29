@@ -1,6 +1,6 @@
 package com.nortal.telecom.smsgateway.test.service;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +23,14 @@ public class SendSmsServiceTest {
 	@Resource
 	private SendSmsService service;
 
-	// @Ignore
 	@Test
 	public void sendSmsTest() {
 		String message = "TestMessage";
 		List<String> addresses = new ArrayList<String>();
-		addresses.add("receiver:56790907");
+		addresses.add("receiver:55906207");
 		SendSmsResponse response = service.sendSms(message, addresses,
 				new ChargingInformation());
-		System.out.println(response.getResult());
-		assertEquals(1, 1);
+		assertNotNull(response);
 	}
 
 }
