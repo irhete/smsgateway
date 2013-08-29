@@ -17,16 +17,16 @@ public class SoapResponseErrorMessageHandler {
 
 	private enum ExceptionType {
 		INVALID_CREDENTIALS(
-				"WSDoAllReceiver: security processing failed; nested exception is: org.apache.ws.security.WSSecurityException: General security error (WSSecurityEngine: Callback supplied invalid or no password for: USERNAME)"), INVALID_SOAP_ENVELOPE(
+				"org.apache.ws.security.WSSecurityException: General security error (WSSecurityEngine: Callback supplied no password for: "), INVALID_SOAP_ENVELOPE(
 				"WSDoAllReceiver: cannot convert into document; nested exception is: java.lang.ClassCastException"), INVALID_RECEIVER_FORMAT(
 				"org.apache.axis.types.URI$MalformedURIException: No scheme found in URI."), NO_SUCH_CUSTOMER_RECEIVE(
-				"smsgw.soap.server.SoapCallException: No such customer:."), NO_SUCH_CUSTOMER_SEND(
-				"SVC0002 - No such customer: PROFILE_USERNAME"), ALPHANUMERIC_SENDER_NUMBER_NOT_ALLOWED(
-				"SCV5038 - Alfanumeric messages not allowed: USERNAME"), FORBIDDEN_CHARACTERS_IN_SENDER_NUMBER(
-				"SVC0002 – Sender number contains forbidden character(s):"), MESSAGE_EXCEEDS_MAXIMUM_LENGTH(
-				"SVC0280 - Message exceeds maximum length"), MESSAGE_EXCEEDS_MAXIMUM_LENGTH_AND_CONTAINS_UNICODE(
-				"SVC0280 - Message exceeds maximum length (message is Unicode)"), NO_SUCH_SENDER_NUMBER(
-				"SVC0004 - No such sender number: NUMBER"), UCP_MESSAGE_CREATION_FAILURE(
+				"smsgw.soap.server.SoapCallException: No such customer:"), NO_SUCH_CUSTOMER_SEND(
+				"SVC0002 - No such customer: "), ALPHANUMERIC_SENDER_NUMBER_NOT_ALLOWED(
+				"SCV5038 - Alfanumeric messages not allowed: "), FORBIDDEN_CHARACTERS_IN_SENDER_NUMBER(
+				"SVC0002 – Sender number contains forbidden character(s):"), MESSAGE_EXCEEDS_MAXIMUM_LENGTH_AND_CONTAINS_UNICODE(
+				"SVC0280 - Message exceeds maximum length (message is Unicode)"), MESSAGE_EXCEEDS_MAXIMUM_LENGTH(
+				"SVC0280 - Message exceeds maximum length"), NO_SUCH_SENDER_NUMBER(
+				"SVC0004 - No such sender number: "), UCP_MESSAGE_CREATION_FAILURE(
 				"SVC0001");
 
 		private String text;
@@ -38,7 +38,7 @@ public class SoapResponseErrorMessageHandler {
 		public static ExceptionType fromString(String text) {
 			if (text != null) {
 				for (ExceptionType b : ExceptionType.values()) {
-					if (text.equalsIgnoreCase(b.text)) {
+					if (text.indexOf(b.text) != -1) {
 						return b;
 					}
 				}
@@ -82,7 +82,7 @@ public class SoapResponseErrorMessageHandler {
 		case UCP_MESSAGE_CREATION_FAILURE:
 			return new UCPMessageCreationException();
 		default:
-			return null;
+			return new RuntimeException();
 		}
 	}
 
