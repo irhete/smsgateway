@@ -51,6 +51,7 @@ public class SendSmsServiceImpl implements SendSmsService {
 
 	public SendSmsResponse sendSms(String message, List<String> addresses,
 			ChargingInformation chargingInfo) {
+		log.debug("Building sms");
 		SendSms request = SEND_SMS_FACTORY.createSendSms();
 		request.setMessage(message);
 		request.setSenderName(SENDER_NAME);
