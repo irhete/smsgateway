@@ -45,6 +45,10 @@ public class SendSmsServiceImpl implements SendSmsService {
 		sendSmsWebServiceTemplate = webServiceTemplate;
 	}
 
+	public WebServiceTemplate getWebServiceTemplate() {
+		return sendSmsWebServiceTemplate;
+	}
+
 	public SendSmsResponse sendSms(String message, List<String> addresses,
 			ChargingInformation chargingInfo) {
 		SendSms request = SEND_SMS_FACTORY.createSendSms();
@@ -64,7 +68,8 @@ public class SendSmsServiceImpl implements SendSmsService {
 			SendSmsResponse response = (SendSmsResponse) sendSmsWebServiceTemplate
 					.marshalSendAndReceive(request);
 			if (response.getResult().indexOf("SVC") != -1) {
-				throw SoapResponseErrorMessageHandler.handle(response.getResult());
+				throw SoapResponseErrorMessageHandler.handle(response
+						.getResult());
 			}
 			return response;
 		} catch (SoapFaultClientException e) {

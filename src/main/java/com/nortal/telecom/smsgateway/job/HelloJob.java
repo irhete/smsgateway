@@ -1,13 +1,17 @@
 package com.nortal.telecom.smsgateway.job;
 
-import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.springframework.scheduling.quartz.QuartzJobBean;
 
-public class HelloJob implements Job {
+public class HelloJob extends QuartzJobBean {
 
-	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		System.out.println("Hello! HelloJob is executing.");
+	@Override
+	protected void executeInternal(JobExecutionContext context)
+			throws JobExecutionException {
+
+		System.out.println("HelloJob is executing!");
+
 	}
 
 }
