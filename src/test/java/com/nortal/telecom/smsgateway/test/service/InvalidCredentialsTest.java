@@ -15,7 +15,7 @@ import com.nortal.telecom.smsgateway.model.sendsms.ChargingInformation;
 import com.nortal.telecom.smsgateway.service.SendSmsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:testApplicationContextInvalidCredentials.xml" })
+@ContextConfiguration(locations = { "classpath:testApplicationContextInvalidPassword.xml" })
 public class InvalidCredentialsTest {
 
 	@Resource

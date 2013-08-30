@@ -31,7 +31,7 @@ import com.nortal.telecom.smsgateway.model.sendsms.SendUnicodeSmsWithReportRespo
 @Service
 public class SendSmsServiceImpl implements SendSmsService {
 
-	private final Logger log = LoggerFactory
+	private static final Logger log = LoggerFactory
 			.getLogger(SendSmsServiceImpl.class);
 
 	private static final String SENDER_NAME = "sender:9498";
@@ -51,7 +51,7 @@ public class SendSmsServiceImpl implements SendSmsService {
 
 	public SendSmsResponse sendSms(String message, List<String> addresses,
 			ChargingInformation chargingInfo) {
-		log.debug("Building sms");
+		log.debug("Building sms request");
 		SendSms request = SEND_SMS_FACTORY.createSendSms();
 		request.setMessage(message);
 		request.setSenderName(SENDER_NAME);
@@ -66,8 +66,10 @@ public class SendSmsServiceImpl implements SendSmsService {
 	private SendSmsResponse sendSmsAndHandleResponse(SendSms request)
 			throws RuntimeException {
 		try {
+			log.debug("Sending sms");
 			SendSmsResponse response = (SendSmsResponse) sendSmsWebServiceTemplate
 					.marshalSendAndReceive(request);
+			log.debug("Handling sent sms response");
 			if (response.getResult().indexOf("SVC") != -1) {
 				throw SoapResponseErrorMessageHandler.handle(response
 						.getResult());
